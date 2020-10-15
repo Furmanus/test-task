@@ -29,11 +29,15 @@ interface IComponentProps {
 
 const useStyles = makeStyles({
     container: {
-        height: 568,
+        flexGrow: 1,
     },
     wrapper: {
         marginTop: '5px',
         width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        overflowY: 'auto',
     }
 });
 

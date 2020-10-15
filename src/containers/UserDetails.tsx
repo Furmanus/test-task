@@ -53,6 +53,11 @@ const styles = createStyles({
         height: 568,
         display: 'flex',
         flexDirection: 'column',
+        '@media (max-width: 468px)': {
+            width: '100%',
+            height: '100%',
+            boxShadow: 'unset',
+        },
     },
 });
 
