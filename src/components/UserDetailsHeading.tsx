@@ -1,6 +1,6 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom';
-import {Avatar, IconButton, Fade} from '@material-ui/core';
+import {IconButton, Fade} from '@material-ui/core';
 import {ArrowBack} from '@material-ui/icons';
 import {AppStyledUserDetailsHeader} from '../styled/AppStyledUserDetailsHeader';
 import {AppRoutes} from '../enums/routes';

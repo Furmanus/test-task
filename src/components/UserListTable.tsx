@@ -8,13 +8,11 @@ import {
     TableContainer,
     Paper,
     Fade,
-    CircularProgress,
 } from '@material-ui/core';
 import {TableData} from '../interfaces/interfaces';
 import {makeStyles} from '@material-ui/core/styles';
 import { UserListTableRow } from './UserListTableRow';
 import {UserListTablePagination} from './UserListTablePagination';
-import { AppStyledLoaderContainer } from '../styled/AppStyledLoaderContainer';
 import {AppLoader} from './AppLoader';
 
 interface IComponentProps {
