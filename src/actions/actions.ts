@@ -20,6 +20,12 @@ export function getUserListAction(page: number, since: number): AppThunkAction {
                 data,
                 headers,
             } = response;
+            /**
+             * Retrieve information from response "link" header about next page "since" parameter. Header can contain
+             * multiple information with different relationships (next page, first page), we are only looking for "next"
+             * rel, so headers have to be split and then we search if rel of certain part is "next". If yes, we retrieve
+             * number from "since=" part of next page url.
+             */
             const pagination = headers.link?.split(',').reduce((result: {nextPageParameter: string | undefined}, data: string) => {
                 const splitData = data.split(';').map(part => part.trim());
                 const parameterRegexp = /since=([0-9]+)/;
@@ -47,8 +53,6 @@ function getUserListSuccessAction(users: IGitHubUser[], nextPageParam: number | 
     };
 }
 function getUserListFailureAction(error: any): ActionTypes {
-    console.error(error);
-    // TODO handle error
     return {
         type: AppAction.GetUserListFailure,
     };

@@ -64,7 +64,11 @@ class UserListClass extends React.PureComponent<ComponentProps> {
             pager,
             getUsersList,
         } = this.props;
-
+        /**
+         * Page change process: currentPage in store is increased and such action is detected when component receives
+         * new props. When currentPage props are different, that means that user just changed page and new page data
+         * has to be fetch.
+         */
         if (prevProps.currentPage !== currentPage) {
             getUsersList(currentPage, pager[currentPage]);
         }
