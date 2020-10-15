@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import {createStyles, Paper, Typography, Fade} from '@material-ui/core';
+import {createStyles, Paper, Typography} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 import {IGitHubUserDetails} from '../interfaces/interfaces';
 import {IStore} from '../interfaces/store';
@@ -49,7 +49,7 @@ const styles = createStyles({
     paper: {
         marginTop: 5,
         padding: 5,
-        width: '100%',
+        width: 400,
         height: 568,
         display: 'flex',
         flexDirection: 'column',
