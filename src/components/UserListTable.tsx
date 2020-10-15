@@ -50,12 +50,12 @@ export function UserListTable(props: IComponentProps): JSX.Element {
     const classes = useStyles();
 
     return (
-        <Fade in={true}>
-            <Paper className={classes.wrapper} aria-label="List of GitHub users" elevation={2} component="section">
-                <TableContainer className={classes.container}>
-                    {
-                        isFetchingData ?
-                            <AppLoader/> :
+        <Paper className={classes.wrapper} aria-label="List of GitHub users" elevation={2} component="section">
+            <TableContainer className={classes.container}>
+                {
+                    isFetchingData ?
+                        <AppLoader/> :
+                        <Fade in={true}>
                             <Table stickyHeader>
                                 <TableHead>
                                     <TableRow>
@@ -68,16 +68,16 @@ export function UserListTable(props: IComponentProps): JSX.Element {
                                     {data.map(item => <UserListTableRow key={item.id} {...item}/>)}
                                 </TableBody>
                             </Table>
-                    }
-                </TableContainer>
-                <UserListTablePagination
-                    currentPage={currentPage}
-                    onPreviousClick={onPreviousClick}
-                    onNextClick={onNextClick}
-                    isPreviousDisabled={isPreviousDisabled || isFetchingData}
-                    isNextDisabled={isNextDisabled || isFetchingData}
-                />
-            </Paper>
-        </Fade>
+                        </Fade>
+                }
+            </TableContainer>
+            <UserListTablePagination
+                currentPage={currentPage}
+                onPreviousClick={onPreviousClick}
+                onNextClick={onNextClick}
+                isPreviousDisabled={isPreviousDisabled || isFetchingData}
+                isNextDisabled={isNextDisabled || isFetchingData}
+            />
+        </Paper>
     );
 }

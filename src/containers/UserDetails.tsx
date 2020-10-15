@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import {createStyles, Paper} from '@material-ui/core';
+import {createStyles, Paper, Typography, Fade} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 import {IGitHubUserDetails} from '../interfaces/interfaces';
 import {IStore} from '../interfaces/store';
@@ -11,6 +11,8 @@ import {AppLoader} from '../components/AppLoader';
 import { UserDetailsHeading } from '../components/UserDetailsHeading';
 import { UserDetailsContent } from '../components/UserDetailsContent';
 import {UserDetailsFooter} from '../components/UserDetailsFooter';
+import {AppTexts} from '../enums/texts';
+import {config} from '../config';
 
 type ComponentRouteProps = RouteComponentProps<{userId: string}>
 interface IComponentStyleProps {
@@ -76,26 +78,29 @@ class UserDetailsClass extends React.PureComponent<ComponentProps> {
         } = this.props;
 
         return (
-            <Paper className={classes.paper} aria-label="User details" elevation={2} component="section">
-                {
-                    isFetchingUserDetails || userDetails === null ?
-                        <AppLoader/> :
-                        <React.Fragment>
-                            <UserDetailsHeading/>
-                            <UserDetailsContent
-                                name={userDetails.name}
-                                type={userDetails.type}
-                                followers={userDetails.followers}
-                                following={userDetails.following}
-                                public_repos={userDetails.public_repos}
-                                avatar_url={userDetails.avatar_url}
-                            />
-                            <UserDetailsFooter
-                                pageUrl={userDetails.html_url}
-                            />
-                        </React.Fragment>
-                }
-            </Paper>
+            <React.Fragment>
+                <Typography>{AppTexts[config.lang].UserDetailsCardHeading}</Typography>
+                <Paper className={classes.paper} aria-label="User details" elevation={2} component="section">
+                    {
+                        isFetchingUserDetails || userDetails === null ?
+                            <AppLoader/> :
+                            <React.Fragment>
+                                <UserDetailsHeading/>
+                                <UserDetailsContent
+                                    name={userDetails.name}
+                                    type={userDetails.type}
+                                    followers={userDetails.followers}
+                                    following={userDetails.following}
+                                    public_repos={userDetails.public_repos}
+                                    avatar_url={userDetails.avatar_url}
+                                />
+                                <UserDetailsFooter
+                                    pageUrl={userDetails.html_url}
+                                />
+                            </React.Fragment>
+                    }
+                </Paper>
+            </React.Fragment>
         );
     }
 }

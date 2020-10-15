@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppStyledUserDetailsFooter } from '../styled/AppStyledUserDetailsFooter';
-import {Button} from '@material-ui/core';
+import {Button, Fade} from '@material-ui/core';
 import {config} from '../config';
 import { AppTexts } from '../enums/texts';
 import {makeStyles} from '@material-ui/core/styles';
@@ -26,15 +26,17 @@ export function UserDetailsFooter(props: IComponentProps): JSX.Element {
     const classes = useStyles();
 
     return (
-        <AppStyledUserDetailsFooter>
-            <Button
-                className={classes.button}
-                href={pageUrl}
-                size="large"
-                color="primary"
-            >
-                {AppTexts[lang].UserDetailsProfile}
-            </Button>
-        </AppStyledUserDetailsFooter>
+        <Fade in={true}>
+            <AppStyledUserDetailsFooter>
+                <Button
+                    className={classes.button}
+                    href={pageUrl}
+                    size="large"
+                    color="primary"
+                >
+                    {AppTexts[lang].UserDetailsProfile}
+                </Button>
+            </AppStyledUserDetailsFooter>
+        </Fade>
     );
 }

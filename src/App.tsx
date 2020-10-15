@@ -9,7 +9,7 @@ export class App extends React.PureComponent {
   public render(): React.ReactNode {
     return (
         <AppStyledMainWrapper>
-          <h1>HALO</h1>
+          <h1>Recruitment App</h1>
           <Switch>
             <Route
                 exact
