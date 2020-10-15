@@ -57,6 +57,7 @@ const styles = createStyles({
             width: '100%',
             height: '100%',
             boxShadow: 'unset',
+            padding: 0,
         },
     },
 });
