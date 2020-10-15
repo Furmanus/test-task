@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment} from 'react';
+import { Switch, Route } from 'react-router-dom';
+import {AppRoutes} from './enums/routes';
+import {UserList} from './containers/UserList';
+import {UserDetails} from './containers/UserDetails';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends React.PureComponent {
+  public render(): React.ReactNode {
+    return (
+        <Fragment>
+          <h1>HALO</h1>
+          <Switch>
+            <Route
+                exact
+                path={AppRoutes.UserList}
+                component={UserList}
+            />
+            <Route
+                path={AppRoutes.UserDetails}
+                component={UserDetails}
+            />
+          </Switch>
+        </Fragment>
+    );
+  }
 }
 
-export default App;

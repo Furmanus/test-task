@@ -1,0 +1,58 @@
+import {IStore} from '../interfaces/store';
+import {ActionTypes} from '../actions/action_types';
+import {AppAction} from '../enums/actions';
+import {IPager} from '../interfaces/interfaces';
+
+const initialState: IStore = {
+    currentPage: 0,
+    pager: {
+        0: 0,
+    },
+    isFetchingUsers: false,
+    users: [],
+};
+
+export function reducer(state = initialState, action: ActionTypes): IStore {
+    let nextPageSince: number | null;
+    let currentPage: number;
+    let pagerCopy: IPager;
+
+    if (!action) {
+        return state;
+    }
+
+    switch (action.type) {
+        case AppAction.GetUserList:
+            return {
+                ...state,
+                isFetchingUsers: true,
+            };
+        case AppAction.GetUserListSuccess:
+            nextPageSince = action.nextPageParam;
+            currentPage = state.currentPage;
+            pagerCopy = {...state.pager};
+
+            if (nextPageSince !== null) {
+                pagerCopy[currentPage + 1] = nextPageSince;
+            }
+
+            return {
+                ...state,
+                isFetchingUsers: false,
+                users: action.users,
+                pager: pagerCopy,
+            };
+        case AppAction.GetUserListFailure:
+            return {
+                ...state,
+                isFetchingUsers: false,
+            };
+        case AppAction.ChangePage:
+            return {
+                ...state,
+                currentPage: action.nextPage,
+            };
+        default:
+            return state;
+    }
+}
