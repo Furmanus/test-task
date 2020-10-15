@@ -14,7 +14,7 @@ import {UserDetailsFooter} from '../components/UserDetailsFooter';
 import {AppTexts} from '../enums/texts';
 import {config} from '../config';
 
-type ComponentRouteProps = RouteComponentProps<{userId: string}>
+type ComponentRouteProps = RouteComponentProps<{user: string}>
 interface IComponentStyleProps {
     classes: {
         paper: string;
@@ -69,7 +69,7 @@ class UserDetailsClass extends React.PureComponent<ComponentProps> {
             isFetchingUserDetails,
             match,
         } = this.props;
-        const id = match?.params?.userId;
+        const id = match?.params?.user;
 
         if (!isFetchingUserDetails && id) {
             getUserDetails(id);

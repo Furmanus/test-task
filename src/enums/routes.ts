@@ -1,4 +1,4 @@
 export enum AppRoutes {
     UserList = '/',
-    UserDetails = '/details/:userId',
+    UserDetails = '/details/:user',
 }

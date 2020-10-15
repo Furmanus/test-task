@@ -25,7 +25,7 @@ export function UserListTableRow(props: TableData): JSX.Element {
     const routerHistory = useHistory();
 
     function onAvatarClick() {
-        routerHistory.push(AppRoutes.UserDetails.replace(':userId', id.toString()));
+        routerHistory.push(AppRoutes.UserDetails.replace(':user', login));
     }
 
     return (
