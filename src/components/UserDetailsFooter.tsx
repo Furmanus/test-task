@@ -33,6 +33,8 @@ export function UserDetailsFooter(props: IComponentProps): JSX.Element {
                     href={pageUrl}
                     size="large"
                     color="primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
                 >
                     {AppTexts[lang].UserDetailsProfile}
                 </Button>
