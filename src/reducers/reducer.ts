@@ -2,10 +2,19 @@ import {IStore} from '../interfaces/store';
 import {ActionTypes} from '../actions/action_types';
 import {AppAction} from '../enums/actions';
 import {IPager} from '../interfaces/interfaces';
+import {readObjectDataFromStorage, writeObjectDataToStorage} from '../utils/storage';
+
+interface IStorageData {
+    currentPage: number;
+    pager: IPager;
+}
+
+const storageKey = 'app_pager';
+const storageData = readObjectDataFromStorage<IStorageData>(storageKey);
 
 const initialState: IStore = {
-    currentPage: 0,
-    pager: {
+    currentPage: storageData?.currentPage ?? 0,
+    pager: storageData?.pager ?? {
         0: 0,
     },
     isFetchingUsers: false,
@@ -34,6 +43,11 @@ export function reducer(state = initialState, action: ActionTypes): IStore {
 
             if (nextPageSince !== null) {
                 pagerCopy[currentPage + 1] = nextPageSince;
+
+                writeObjectDataToStorage(storageKey, {
+                    pager: pagerCopy,
+                    currentPage,
+                });
             }
 
             return {
