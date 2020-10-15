@@ -1,13 +1,10 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import {AppRoutes} from '../enums/routes';
 import {IGitHubUser, IPager} from '../interfaces/interfaces';
 import {IStore} from '../interfaces/store';
 import {changePage, getUserListAction} from '../actions/actions';
 import {AppThunkDispatch} from '../interfaces/thunk';
 import {connect, ConnectedProps} from 'react-redux';
 import {UserListTable} from '../components/UserListTable';
-import {CircularProgress} from '@material-ui/core';
 
 interface IComponentStoreProps {
     isFetchingUsers: boolean;
@@ -55,7 +52,7 @@ class UserListClass extends React.PureComponent<ComponentProps> {
             currentPage,
         } = this.props;
 
-        return !!pager[currentPage - 1];
+        return pager[currentPage - 1] >= 0;
     }
 
     public componentDidUpdate(prevProps: Readonly<ComponentProps>, prevState: Readonly<{}>): void {
@@ -110,16 +107,21 @@ class UserListClass extends React.PureComponent<ComponentProps> {
         const {
             users,
             isFetchingUsers,
+            currentPage,
         } = this.props;
 
         return (
             <Fragment>
                 <p>LISTA USERA</p>
-                {
-                    isFetchingUsers ?
-                        <CircularProgress/> :
-                        <UserListTable data={users}/>
-                }
+                <UserListTable
+                    data={users}
+                    currentPage={currentPage}
+                    onPreviousClick={this.onPreviousClick}
+                    onNextClick={this.onNextClick}
+                    isPreviousDisabled={!this.doesPreviousPageExists}
+                    isNextDisabled={!this.doesNextPageExists}
+                    isFetchingData={isFetchingUsers}
+                />
             </Fragment>
         );
     }

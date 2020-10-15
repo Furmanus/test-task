@@ -28,13 +28,11 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
-  <React.StrictMode>
-      <Provider store={store}>
-          <BrowserRouter>
-            <App/>
-          </BrowserRouter>
-          <GlobalStyle/>
-      </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
+      <GlobalStyle/>
+  </Provider>,
   document.getElementById('root')
 );
