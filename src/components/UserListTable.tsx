@@ -31,6 +31,7 @@ const useStyles = makeStyles({
         height: 568,
     },
     wrapper: {
+        marginTop: '5px',
         width: '100%',
     }
 });

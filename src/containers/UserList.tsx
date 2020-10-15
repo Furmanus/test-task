@@ -5,6 +5,9 @@ import {changePage, getUserListAction} from '../actions/actions';
 import {AppThunkDispatch} from '../interfaces/thunk';
 import {connect, ConnectedProps} from 'react-redux';
 import {UserListTable} from '../components/UserListTable';
+import {Typography} from '@material-ui/core';
+import {AppTexts} from '../enums/texts';
+import {config} from '../config';
 
 interface IComponentStoreProps {
     isFetchingUsers: boolean;
@@ -112,7 +115,7 @@ class UserListClass extends React.PureComponent<ComponentProps> {
 
         return (
             <Fragment>
-                <p>LISTA USERA</p>
+                <Typography>{AppTexts[config.lang].UserListTableHeading}</Typography>
                 <UserListTable
                     data={users}
                     currentPage={currentPage}
