@@ -3,4 +3,7 @@ export enum AppAction {
     GetUserListSuccess = 'GetUserListSuccess',
     GetUserListFailure = 'GetUserListFailure',
     ChangePage = 'ChangePage',
+    GetUserDetails = 'GetUserDetails',
+    GetUserDetailsSuccess = 'GetUserDetailsSuccess',
+    GetUserDetailsFailure = 'GetUserDetailsFailure',
 }

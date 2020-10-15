@@ -2,8 +2,9 @@ import {ThunkAction} from 'redux-thunk';
 import {IStore} from '../interfaces/store';
 import {ActionTypes} from './action_types';
 import {AppAction} from '../enums/actions';
-import {fetchUserList} from '../api/api';
-import {IGitHubUser} from '../interfaces/interfaces';
+import {fetchUserDetails, fetchUserList} from '../api/api';
+import {IGitHubUser, IGitHubUserDetails} from '../interfaces/interfaces';
+import {isGitHubUserDetails} from '../interfaces/type_guards';
 
 type AppThunkAction<R = void> = ThunkAction<R, IStore, void, ActionTypes>;
 
@@ -56,5 +57,35 @@ export function changePage(nextPage: number): ActionTypes {
     return {
         type: AppAction.ChangePage,
         nextPage,
+    };
+}
+export function getUserDetailsAction(userId: string): AppThunkAction {
+    return async (dispatch)  => {
+        dispatch({
+            type: AppAction.GetUserDetails,
+        });
+
+        try {
+            const response = await fetchUserDetails(userId);
+
+            if (isGitHubUserDetails(response.data)) {
+                dispatch(getUserDetailsActionSuccess(response.data));
+            } else {
+                throw new Error('Invalid response data');
+            }
+        } catch (e) {
+            dispatch(getUserDetailsActionFailure(e));
+        }
+    };
+}
+function getUserDetailsActionSuccess(userDetails: IGitHubUserDetails): ActionTypes {
+    return {
+        type: AppAction.GetUserDetailsSuccess,
+        userDetails,
+    };
+}
+function getUserDetailsActionFailure(e: any): ActionTypes {
+    return {
+        type: AppAction.GetUserDetailsFailure,
     };
 }

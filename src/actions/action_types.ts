@@ -1,6 +1,6 @@
 import {Action} from 'redux';
 import {AppAction} from '../enums/actions';
-import {IGitHubUser} from '../interfaces/interfaces';
+import {IGitHubUser, IGitHubUserDetails} from '../interfaces/interfaces';
 
 type FetchUsersList = Action<AppAction.GetUserList>;
 interface FetchUsersListSuccess extends Action<AppAction.GetUserListSuccess> {
@@ -11,9 +11,17 @@ type FetchUsersListFailure = Action<AppAction.GetUserListFailure>;
 interface IChangePage extends Action<AppAction.ChangePage> {
     nextPage: number;
 }
+type FetchUserDetails = Action<AppAction.GetUserDetails>;
+interface IFetchUserDetailsSuccess extends Action<AppAction.GetUserDetailsSuccess> {
+    userDetails: IGitHubUserDetails;
+}
+type FetchUserDetailsFailure = Action<AppAction.GetUserDetailsFailure>;
 
 export type ActionTypes =
     FetchUsersList |
     FetchUsersListSuccess |
     FetchUsersListFailure |
-    IChangePage;
+    IChangePage |
+    FetchUserDetails |
+    IFetchUserDetailsSuccess |
+    FetchUserDetailsFailure;

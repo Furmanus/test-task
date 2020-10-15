@@ -19,6 +19,8 @@ const initialState: IStore = {
     },
     isFetchingUsers: false,
     users: [],
+    isFetchingUserDetails: false,
+    userDetails: null,
 };
 
 export function reducer(state = initialState, action: ActionTypes): IStore {
@@ -65,6 +67,22 @@ export function reducer(state = initialState, action: ActionTypes): IStore {
             return {
                 ...state,
                 currentPage: action.nextPage,
+            };
+        case AppAction.GetUserDetails:
+            return {
+                ...state,
+                isFetchingUserDetails: true,
+            };
+        case AppAction.GetUserDetailsSuccess:
+            return {
+                ...state,
+                isFetchingUserDetails: false,
+                userDetails: action.userDetails,
+            };
+        case AppAction.GetUserDetailsFailure:
+            return {
+                ...state,
+                isFetchingUserDetails: false,
             };
         default:
             return state;

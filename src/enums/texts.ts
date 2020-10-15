@@ -22,5 +22,10 @@ const proxyTextHandler = {
 export const AppTexts: AppTextsType = {
     [Languages.En]: new Proxy({
         UserListTableHeading: 'List of GitHub users',
+        UserDetailsType: 'Type: {{type}}',
+        UserDetailsFollowers: 'Followers: {{followers}}',
+        UserDetailsFollowing: 'Following: {{following}}',
+        UserDetailsPublicRepos: 'Public repos: {{repos}}',
+        UserDetailsProfile: 'user profile',
     }, proxyTextHandler),
 };

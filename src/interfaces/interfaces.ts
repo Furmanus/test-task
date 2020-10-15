@@ -17,6 +17,16 @@ export interface IGitHubUser {
     type: string;
     url: string;
 }
+export interface IGitHubUserDetails {
+    id: number;
+    name: string;
+    avatar_url: string;
+    following: number;
+    followers: number;
+    html_url: string;
+    public_repos: string;
+    type: string;
+}
 export interface IPager {
     [key: number]: number;
 }
