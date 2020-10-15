@@ -20,3 +20,4 @@ export interface IGitHubUser {
 export interface IPager {
     [key: number]: number;
 }
+export type TableData = Pick<IGitHubUser, 'id' | 'avatar_url' | 'login'>;

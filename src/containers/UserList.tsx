@@ -6,6 +6,8 @@ import {IStore} from '../interfaces/store';
 import {changePage, getUserListAction} from '../actions/actions';
 import {AppThunkDispatch} from '../interfaces/thunk';
 import {connect, ConnectedProps} from 'react-redux';
+import {UserListTable} from '../components/UserListTable';
+import {CircularProgress} from '@material-ui/core';
 
 interface IComponentStoreProps {
     isFetchingUsers: boolean;
@@ -105,12 +107,19 @@ class UserListClass extends React.PureComponent<ComponentProps> {
     }
 
     public render(): React.ReactNode {
+        const {
+            users,
+            isFetchingUsers,
+        } = this.props;
+
         return (
             <Fragment>
                 <p>LISTA USERA</p>
-                <Link to={AppRoutes.UserDetails}>Detale usera</Link>
-                {this.doesPreviousPageExists && <button onClick={this.onPreviousClick}>previous</button>}
-                {this.doesNextPageExists && <button onClick={this.onNextClick}>next</button>}
+                {
+                    isFetchingUsers ?
+                        <CircularProgress/> :
+                        <UserListTable data={users}/>
+                }
             </Fragment>
         );
     }
