@@ -4,9 +4,17 @@ import {IconButton, Fade} from '@material-ui/core';
 import {ArrowBack} from '@material-ui/icons';
 import {AppStyledUserDetailsHeader} from '../styled/AppStyledUserDetailsHeader';
 import {AppRoutes} from '../enums/routes';
+import {makeStyles} from '@material-ui/core/styles';
+
+const useStyle = makeStyles({
+    button: {
+        paddingTop: 15,
+    },
+});
 
 export function UserDetailsHeading(): JSX.Element {
     const routerHistory = useHistory();
+    const classes = useStyle();
 
     function onBackClick(): void {
         routerHistory.push(AppRoutes.UserList);
@@ -15,7 +23,7 @@ export function UserDetailsHeading(): JSX.Element {
     return (
         <Fade in={true}>
             <AppStyledUserDetailsHeader>
-                <IconButton aria-label="back" onClick={onBackClick}>
+                <IconButton className={classes.button} aria-label="back" onClick={onBackClick}>
                     <ArrowBack/>
                 </IconButton>
             </AppStyledUserDetailsHeader>
