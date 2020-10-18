@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppStyledUserDetailsContentContainer } from "../styled/AppStyledUserDetailsContentContainer";
 import {IGitHubUserDetails} from '../interfaces/interfaces';
-import {Avatar, Typography, Fade} from '@material-ui/core';
+import {Avatar, Typography, Fade, Box} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import {config} from '../config';
 import {AppTexts} from '../enums/texts';
@@ -51,10 +51,20 @@ export function UserDetailsContent(props: ComponentProps): JSX.Element {
                     src={avatar_url}
                     className={classes.avatar}
                 />
-                <Typography className={classes.text}>{AppTexts[lang].UserDetailsType.replace('{{type}}', type)}</Typography>
-                <Typography className={classes.text}>{AppTexts[lang].UserDetailsFollowers.replace('{{followers}}', followers.toString())}</Typography>
-                <Typography className={classes.text}>{AppTexts[lang].UserDetailsFollowing.replace('{{following}}', following.toString())}</Typography>
-                <Typography className={classes.text}>{AppTexts[lang].UserDetailsPublicRepos.replace('{{repos}}', public_repos)}</Typography>
+                <Box height={1} display="flex" flexDirection="column" justifyContent="center">
+                    <Typography className={classes.text}>
+                        {AppTexts[lang].UserDetailsType.replace('{{type}}', type)}
+                    </Typography>
+                    <Typography className={classes.text}>
+                        {AppTexts[lang].UserDetailsFollowers.replace('{{followers}}', followers.toString())}
+                    </Typography>
+                    <Typography className={classes.text}>
+                        {AppTexts[lang].UserDetailsFollowing.replace('{{following}}', following.toString())}
+                    </Typography>
+                    <Typography className={classes.text}>
+                        {AppTexts[lang].UserDetailsPublicRepos.replace('{{repos}}', public_repos)}
+                    </Typography>
+                </Box>
             </AppStyledUserDetailsContentContainer>
         </Fade>
     );
