@@ -95,4 +95,3 @@ describe('Actions unit tests', () => {
     });
 });
 
-export {};

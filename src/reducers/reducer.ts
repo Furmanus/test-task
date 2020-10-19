@@ -19,7 +19,7 @@ const storageData = readObjectDataFromStorage<IStorageData>(storageKey);
  * equal to "since" parameter from header of currently fetched page. Each page fetch means fetching data for current page
  * and creating entry in store for another page.
  */
-const initialState: IStore = {
+export const initialState: IStore = {
     currentPage: storageData?.currentPage ?? 0,
     pager: storageData?.pager ?? {
         0: 0,
@@ -30,7 +30,7 @@ const initialState: IStore = {
     userDetails: null,
 };
 
-export function reducer(state = initialState, action: ActionTypes): IStore {
+export function reducer(state = initialState, action?: ActionTypes): IStore {
     let nextPageSince: number | null;
     let currentPage: number;
     let pagerCopy: IPager;
