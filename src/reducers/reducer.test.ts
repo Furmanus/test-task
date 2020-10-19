@@ -2,6 +2,7 @@ import {initialState, reducer} from './reducer';
 import {ActionTypes} from '../actions/action_types';
 import {AppAction} from '../enums/actions';
 import {IGitHubUser, IGitHubUserDetails} from '../interfaces/interfaces';
+import {writeObjectDataToStorage} from '../utils/storage';
 
 jest.mock('../utils/storage', () => ({
     readObjectDataFromStorage: jest.fn(),
@@ -50,6 +51,7 @@ describe('App reducer', () => {
                 1: NEXT_PAGE_SINCE,
             }
         });
+        expect(writeObjectDataToStorage).toHaveBeenCalled();
     });
     it('should handle get user list failure action', () => {
         expect(reducer({
