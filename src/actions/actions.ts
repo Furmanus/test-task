@@ -40,8 +40,8 @@ export function getUserListAction(page: number, since: number): AppThunkAction {
                 data,
                 typeof pagination.nextPageParameter === 'string' ? parseInt(pagination.nextPageParameter, 10) : null,
             ));
-        } catch (e) {
-            dispatch(getUserListFailureAction(e));
+        } catch {
+            dispatch(getUserListFailureAction());
         }
     };
 }
@@ -52,7 +52,7 @@ function getUserListSuccessAction(users: IGitHubUser[], nextPageParam: number | 
         users,
     };
 }
-function getUserListFailureAction(error: any): ActionTypes {
+function getUserListFailureAction(): ActionTypes {
     return {
         type: AppAction.GetUserListFailure,
     };
@@ -77,8 +77,8 @@ export function getUserDetailsAction(userId: string): AppThunkAction {
             } else {
                 throw new Error('Invalid response data');
             }
-        } catch (e) {
-            dispatch(getUserDetailsActionFailure(e));
+        } catch {
+            dispatch(getUserDetailsActionFailure());
         }
     };
 }
@@ -88,7 +88,7 @@ function getUserDetailsActionSuccess(userDetails: IGitHubUserDetails): ActionTyp
         userDetails,
     };
 }
-function getUserDetailsActionFailure(e: any): ActionTypes {
+function getUserDetailsActionFailure(): ActionTypes {
     return {
         type: AppAction.GetUserDetailsFailure,
     };
