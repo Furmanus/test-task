@@ -7,4 +7,5 @@ export interface IStore {
     readonly users: IGitHubUser[];
     readonly isFetchingUserDetails: boolean;
     readonly userDetails: IGitHubUserDetails | null;
+    readonly showErrorDialog: boolean;
 }

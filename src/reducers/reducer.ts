@@ -28,6 +28,7 @@ export const initialState: IStore = {
     users: [],
     isFetchingUserDetails: false,
     userDetails: null,
+    showErrorDialog: false,
 };
 
 export function reducer(state = initialState, action?: ActionTypes): IStore {
@@ -72,6 +73,7 @@ export function reducer(state = initialState, action?: ActionTypes): IStore {
             return {
                 ...state,
                 isFetchingUsers: false,
+                showErrorDialog: true,
             };
         case AppAction.ChangePage:
             return {
@@ -93,6 +95,12 @@ export function reducer(state = initialState, action?: ActionTypes): IStore {
             return {
                 ...state,
                 isFetchingUserDetails: false,
+                showErrorDialog: true,
+            };
+        case AppAction.CloseErrorDialog:
+            return {
+                ...state,
+                showErrorDialog: false,
             };
         default:
             return state;

@@ -28,5 +28,6 @@ export const AppTexts: AppTextsType = {
         UserDetailsFollowing: 'Following: {{following}}',
         UserDetailsPublicRepos: 'Public repos: {{repos}}',
         UserDetailsProfile: 'user profile',
+        FetchErrorDialogTitle: 'Error while fetching data',
     }, proxyTextHandler),
 };

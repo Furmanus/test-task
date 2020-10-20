@@ -99,3 +99,8 @@ function getUserDetailsActionFailure(): ActionTypes {
         type: AppAction.GetUserDetailsFailure,
     };
 }
+export function closeErrorDialogAction(): ActionTypes {
+    return {
+        type: AppAction.CloseErrorDialog,
+    };
+}

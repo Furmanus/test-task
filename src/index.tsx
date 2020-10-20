@@ -4,7 +4,7 @@ import {applyMiddleware, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {BrowserRouter} from 'react-router-dom';
-import {App} from './App';
+import {App} from './containers/App';
 import {reducer} from './reducers/reducer';
 import {createGlobalStyle} from 'styled-components';
 

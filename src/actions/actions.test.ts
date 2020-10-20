@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import {AnyAction} from 'redux';
 import {AppAction} from '../enums/actions';
 import {fetchUserDetails, fetchUserList} from '../api/api';
-import {changePage, getUserDetailsAction, getUserListAction} from './actions';
+import {changePage, closeErrorDialogAction, getUserDetailsAction, getUserListAction} from './actions';
 
 jest.mock('../api/api', () => ({
     fetchUserList: jest.fn(),
@@ -91,6 +91,11 @@ describe('Actions unit tests', () => {
             await store.dispatch(getUserDetailsAction('12') as unknown as AnyAction);
 
             expect(store.getActions()).toStrictEqual(expectedActions);
+        });
+    });
+    describe('Close error dialog', () => {
+        it('should close error dialog', () => {
+            expect(closeErrorDialogAction()).toStrictEqual({type: AppAction.CloseErrorDialog});
         });
     });
 });

@@ -16,6 +16,7 @@ interface IFetchUserDetailsSuccess extends Action<AppAction.GetUserDetailsSucces
     userDetails: IGitHubUserDetails;
 }
 type FetchUserDetailsFailure = Action<AppAction.GetUserDetailsFailure>;
+type CloseErrorDialog = Action<AppAction.CloseErrorDialog>;
 
 export type ActionTypes =
     FetchUsersList |
@@ -24,4 +25,5 @@ export type ActionTypes =
     IChangePage |
     FetchUserDetails |
     IFetchUserDetailsSuccess |
-    FetchUserDetailsFailure;
+    FetchUserDetailsFailure |
+    CloseErrorDialog;

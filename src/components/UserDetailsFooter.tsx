@@ -1,8 +1,8 @@
 import React from 'react';
-import { AppStyledUserDetailsFooter } from '../styled/AppStyledUserDetailsFooter';
+import {AppStyledUserDetailsFooter} from '../styled/AppStyledUserDetailsFooter';
 import {Button, Fade} from '@material-ui/core';
 import {config} from '../config';
-import { AppTexts } from '../enums/texts';
+import {AppTexts} from '../enums/texts';
 import {makeStyles} from '@material-ui/core/styles';
 
 interface IComponentProps {

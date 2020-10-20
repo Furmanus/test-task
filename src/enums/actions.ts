@@ -6,4 +6,5 @@ export enum AppAction {
     GetUserDetails = 'GetUserDetails',
     GetUserDetailsSuccess = 'GetUserDetailsSuccess',
     GetUserDetailsFailure = 'GetUserDetailsFailure',
+    CloseErrorDialog = 'CloseErrorDialog',
 }

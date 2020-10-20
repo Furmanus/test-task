@@ -62,6 +62,7 @@ describe('App reducer', () => {
         })).toStrictEqual({
             ...initialState,
             isFetchingUsers: false,
+            showErrorDialog: true,
         });
     });
     it('should handle change page action', () => {
@@ -103,6 +104,17 @@ describe('App reducer', () => {
         })).toStrictEqual({
             ...initialState,
             isFetchingUserDetails: false,
+            showErrorDialog: true,
+        });
+    });
+    it('should handle close error dialog action', () => {
+        expect(reducer({
+            ...initialState,
+            showErrorDialog: true,
+        }, {
+            type: AppAction.CloseErrorDialog,
+        })).toStrictEqual({
+            ...initialState,
         });
     });
 });
