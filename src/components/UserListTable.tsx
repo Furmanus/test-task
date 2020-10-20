@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {
     Table,
     TableHead,
@@ -14,7 +14,11 @@ import {makeStyles} from '@material-ui/core/styles';
 import { UserListTableRow } from './UserListTableRow';
 import {UserListTablePagination} from './UserListTablePagination';
 import {AppLoader} from './AppLoader';
+import {readObjectDataFromStorage, writeObjectDataToStorage} from '../utils/storage';
 
+interface IStorageData {
+    top: number;
+}
 interface IComponentProps {
     data: TableData[];
     currentPage: number;
@@ -24,7 +28,7 @@ interface IComponentProps {
     isNextDisabled: boolean;
     isFetchingData: boolean;
 }
-
+const STORAGE_KEY = 'app_table_scroll_position';
 const useStyles = makeStyles({
     container: {
         flexGrow: 1,
@@ -50,10 +54,44 @@ export function UserListTable(props: IComponentProps): JSX.Element {
         isFetchingData,
     } = props;
     const classes = useStyles();
+    const tableContainerRef = useRef<HTMLDivElement>(null);
+    let scrollTimeout: number | null;
+    const onTableContainerScroll = (): void => {
+        if (!scrollTimeout) {
+            scrollTimeout = window.setTimeout(() => {
+                const scrollTop = tableContainerRef.current?.scrollTop;
+
+                writeObjectDataToStorage(STORAGE_KEY, {
+                    top: scrollTop,
+                });
+
+                scrollTimeout = null;
+            }, 300);
+        }
+    };
+
+    useEffect(() => {
+        const scrollTop = readObjectDataFromStorage<IStorageData>(STORAGE_KEY)?.top;
+        const element = tableContainerRef.current;
+
+        if (element) {
+            element.addEventListener('scroll', onTableContainerScroll);
+
+            if (scrollTop) {
+                element.scrollTop = scrollTop;
+            }
+        }
+
+        return () => {
+            if (element) {
+                element.removeEventListener('scroll', onTableContainerScroll);
+            }
+        };
+    });
 
     return (
         <Paper className={classes.wrapper} aria-label="List of GitHub users" elevation={2} component="section">
-            <TableContainer className={classes.container}>
+            <TableContainer ref={tableContainerRef} className={classes.container}>
                 {
                     isFetchingData ?
                         <AppLoader/> :
