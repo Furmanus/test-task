@@ -11,10 +11,11 @@ import {
 } from '@material-ui/core';
 import {TableData} from '../interfaces/interfaces';
 import {makeStyles} from '@material-ui/core/styles';
-import { UserListTableRow } from './UserListTableRow';
+import {UserListTableRow} from './UserListTableRow';
 import {UserListTablePagination} from './UserListTablePagination';
 import {AppLoader} from './AppLoader';
 import {readObjectDataFromStorage, writeObjectDataToStorage} from '../utils/storage';
+import {STORAGE_KEY_SCROLL} from '../enums/constants';
 
 interface IStorageData {
     top: number;
@@ -28,7 +29,6 @@ interface IComponentProps {
     isNextDisabled: boolean;
     isFetchingData: boolean;
 }
-const STORAGE_KEY = 'app_table_scroll_position';
 const useStyles = makeStyles({
     container: {
         flexGrow: 1,
@@ -64,7 +64,7 @@ export function UserListTable(props: IComponentProps): JSX.Element {
             scrollTimeout = window.setTimeout(() => {
                 const scrollTop = tableContainerRef.current?.scrollTop;
 
-                writeObjectDataToStorage(STORAGE_KEY, {
+                writeObjectDataToStorage(STORAGE_KEY_SCROLL, {
                     top: scrollTop,
                 });
 
@@ -74,7 +74,7 @@ export function UserListTable(props: IComponentProps): JSX.Element {
     };
 
     useEffect(() => {
-        const scrollTop = readObjectDataFromStorage<IStorageData>(STORAGE_KEY)?.top;
+        const scrollTop = readObjectDataFromStorage<IStorageData>(STORAGE_KEY_SCROLL)?.top;
         const element = tableContainerRef.current;
 
         if (element) {

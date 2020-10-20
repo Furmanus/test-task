@@ -1,7 +1,7 @@
 import React from 'react';
 import {IconButton, Typography} from '@material-ui/core';
 import {NavigateNext, NavigateBefore} from '@material-ui/icons';
-import { AppStyledPaginationContainer } from '../styled/AppStyledPaginationContainer';
+import {AppStyledPaginationContainer} from '../styled/AppStyledPaginationContainer';
 
 interface IComponentProps {
     currentPage: number;

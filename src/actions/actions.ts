@@ -5,6 +5,8 @@ import {AppAction} from '../enums/actions';
 import {fetchUserDetails, fetchUserList} from '../api/api';
 import {IGitHubUser, IGitHubUserDetails} from '../interfaces/interfaces';
 import {isGitHubUserDetails} from '../interfaces/type_guards';
+import {writeObjectDataToStorage} from '../utils/storage';
+import {STORAGE_KEY_SCROLL} from '../enums/constants';
 
 type AppThunkAction<R = void> = ThunkAction<R, IStore, void, ActionTypes>;
 
@@ -58,6 +60,10 @@ function getUserListFailureAction(): ActionTypes {
     };
 }
 export function changePage(nextPage: number): ActionTypes {
+    writeObjectDataToStorage(STORAGE_KEY_SCROLL, {
+        top: 0,
+    });
+
     return {
         type: AppAction.ChangePage,
         nextPage,
