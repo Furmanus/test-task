@@ -11,7 +11,11 @@ const useStyles = makeStyles({
         'transition-delay': '0.2s',
         '&:hover': {
             transform: 'scale(1.2)',
-        }
+        },
+        '& img': {
+            // safari bug
+            borderRadius: '50%',
+        },
     }
 });
 

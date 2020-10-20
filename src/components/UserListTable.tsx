@@ -39,7 +39,7 @@ const useStyles = makeStyles({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        overflowY: 'auto',
+        overflowY: 'hidden',
     }
 });
 
