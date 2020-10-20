@@ -55,6 +55,9 @@ export function UserListTable(props: IComponentProps): JSX.Element {
     } = props;
     const classes = useStyles();
     const tableContainerRef = useRef<HTMLDivElement>(null);
+    /**
+     * Store data to session storage every 300ms for performance
+     */
     let scrollTimeout: number | null;
     const onTableContainerScroll = (): void => {
         if (!scrollTimeout) {
